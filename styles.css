@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: black;
+  }
+  
+  body, .quote-input, .timer {
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    background-color: #282a36;
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: .5rem;
+    width: 800px;
+    height: 380px;
+    max-width: 90%;
+    max-height: 90%;
+  }
+  
+  .timer {
+    position: absolute;
+    top: 2rem;
+    font-size: 3rem;
+
+    color: #6272a4;
+    font-weight: bold;
+  }
+  
+  .quote-display {
+    color: #f8f8f2;
+    margin-bottom: 1.5rem;
+    margin-left: calc(1rem + 2px);
+    margin-right: calc(1rem + 2px);
+  }
+  
+  .quote-input {
+    background-color: transparent;
+    border: 1px solid #bd93f9;
+    color: #f8f8f2;
+    outline: none;
+    width: 100%;
+    height: 50%;
+    margin: auto;
+    resize: none;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: .5rem;
+  }
+  
+  .quote-input:focus {
+    border-color: #6272a4;
+  }
+  
+  .correct {
+    color: #6272a4;
+  }
+  
+  .incorrect {
+    color:#ff5555;
+    text-decoration: underline;
+  }
