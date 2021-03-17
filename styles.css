@@ -16,6 +16,15 @@
     font-size: 1.2rem;
   }
   
+  .btnContainer {
+    position: absolute;
+    top: 2rem;
+    font-size: 3rem;
+
+    padding: 2rem;
+    margin: 1rem;
+    border-radius: .5rem;
+  }
   .container {
     background-color: #282a36;
     padding: 2rem;
