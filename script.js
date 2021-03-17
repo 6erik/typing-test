@@ -2,8 +2,9 @@ const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
 const timerElement = document.getElementById('timer')
 const buttonElement = document.getElementById('startButton')
+const inputElement = document.getElementById("quoteInput")
 
-
+inputElement.disabled = true;
 let timerOn = false
 
 quoteInputElement.addEventListener('input', () => {
@@ -34,15 +35,25 @@ quoteInputElement.addEventListener('input', () => {
 })
 
 buttonElement.addEventListener("click", () => {
-  console.log("start button pressed - timer started")
-  startTimer()
+  if (!timerOn) {
+    console.log("start button pressed - timer started")
+    inputElement.disabled = false
+    inputElement.focus()
+    startTimer()
+  } else {
+    console.log("start button pressed while game already started")
+  }
 });
 
 body.addEventListener('keyup',function(e){
   if (!timerOn) {
     if (e.keyCode === 13) {
       console.log("enter key pressed - timer started")
+      inputElement.disabled = false
+      inputElement.focus()
       startTimer()
+    } else {
+      console.log("enter key pressed while game already started")
     }
   }
 });
