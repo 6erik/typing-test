@@ -39,6 +39,7 @@ quoteInputElement.addEventListener('input', () => {
 buttonElement.addEventListener("click", () => {
   if (!timerOn) {
     console.log("start button pressed - timer started")
+    renderNewQuote()
     inputElement.disabled = false
     inputElement.focus()
     startTimer()
@@ -77,6 +78,7 @@ async function renderNewQuote() {
                 "}"
   charCount = quote.length;
   quoteDisplayElement.innerHTML = ''
+  quoteInputElement.value = ""
   quote.split('').forEach(character => {
     const characterSpan = document.createElement('span')
     if (character == "\t") {
@@ -93,6 +95,7 @@ let startTime
 let counterInterval
 
 function startTimer() {
+  timerElement.innerText = "time: -- / wpm: --"
   counterInterval = setInterval(() => {
     let seconds = getTimerTime()
     timerElement.innerText = "time: " + seconds + " / wpm: --"
