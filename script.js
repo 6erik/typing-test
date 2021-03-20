@@ -1,4 +1,5 @@
 const quoteDisplayElement = document.getElementById('quoteDisplay')
+const quoteContainerElement = document.getElementById('quoteContainer')
 const quoteInputElement = document.getElementById('quoteInput')
 const timerElement = document.getElementById('info')
 const buttonElement = document.getElementById('startButton')
@@ -46,6 +47,14 @@ buttonElement.addEventListener("click", () => {
   }
 });
 
+
+quoteContainerElement.addEventListener("click", () => {
+  if (timerOn) {
+
+    inputElement.focus()
+  }
+});
+
 body.addEventListener('keyup',function(e){
   if (!timerOn) {
     if (e.keyCode === 13) {
@@ -80,7 +89,6 @@ async function renderNewQuote() {
   quoteInputElement.value = null
 }
 
-
 let startTime
 let counterInterval
 
@@ -106,6 +114,7 @@ function getWPM(sec) {
 
 function stopTimer() {
   timerOn = false
+  inputElement.disabled = true
   clearInterval(counterInterval)
   let seconds = getTimerTime()
   let wpm = getWPM(seconds)
