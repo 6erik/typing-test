@@ -52,9 +52,9 @@ body.addEventListener('keyup',function(e){
       inputElement.disabled = false
       inputElement.focus()
       startTimer()
-    } else {
-      console.log("enter key pressed while game already started")
     }
+  } else {
+    console.log("enter key pressed while game already started")
   }
 });
 
