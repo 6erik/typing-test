@@ -13,42 +13,43 @@
   
   body, .quote-input, .timer, .btn {
     font-family: 'Ubuntu Mono', monospace;
-    font-size: 1.2rem;
+  }
+
+  .btnContainer {
+    position: absolute;
+    text-align: center;
+    top: 2rem;
+    bottom: 2rem;
+    padding: 2rem;
+    border-radius: .5rem;
   }
 
   .btn {
     color: #fff !important;
-    letter-spacing: 2px;
+    font-size: 24px;
     background: #282a36;
-    padding: 5px 10px 5px 10px;
+    padding: 7px 12px 7px 12px;
     border-radius: 2px;
-    display: inline-block;
     border: none;
     transition: all 0.4s ease 0s;
     }
 
   .btn:hover {
     background: #282a36;
-    letter-spacing: 4px;
     -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
     box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
     transition: all 0.4s ease 0s;
     }
-  
-  .btnContainer {
-    position: absolute;
-    top: 2rem;
-    font-size: 3rem;
 
-    padding: 2rem;
-    margin: 1rem;
-    border-radius: .5rem;
+  #buttonCaption {
+    color: #e0e0d5;
+    font-size: 14px;
   }
-  .container {
+  .quoteContainer {
     background-color: #282a36;
-    padding: 2rem;
-    margin: 1rem;
+    padding: 16px 20px 12px 20px;
+    margin: 8px 8px 8px 8px;
     border-radius: 2px;
     width: 800px;
     height: 380px;
@@ -56,18 +57,18 @@
     max-height: 90%;
   }
   
-  .timer {
-    position: absolute;
-    top: 2rem;
-    font-size: 3rem;
-
-    color: #6272a4;
-    font-weight: bold;
+  .infoContainer {
+    text-align: right;
+    padding-top: 2px;
+    padding-bottom: 4px;
+    font-size: 14px;
+    color: #f8f8f2;
   }
   
   .quote-display {
     color: #f8f8f2;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
     margin-left: calc(1rem + 2px);
     margin-right: calc(1rem + 2px);
   }
@@ -81,13 +82,13 @@
     height: 50%;
     margin: auto;
     resize: none;
-    padding: .5rem 1rem;
+    padding: 8px;
     font-size: 1rem;
     border-radius: 2px;
   }
   
   .quote-input:focus {
-    border-color: #e0e0d5;
+    border-color: #b6adcc;
     border-width: 2px;
   }
   

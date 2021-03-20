@@ -1,11 +1,13 @@
 const quoteDisplayElement = document.getElementById('quoteDisplay')
 const quoteInputElement = document.getElementById('quoteInput')
-const timerElement = document.getElementById('timer')
+const timerElement = document.getElementById('info')
 const buttonElement = document.getElementById('startButton')
 const inputElement = document.getElementById("quoteInput")
 
-inputElement.disabled = true;
+inputElement.disabled = true
 let timerOn = false
+
+timerElement.innerText = "time: -- / wpm: --"
 
 quoteInputElement.addEventListener('input', () => {
   
@@ -30,7 +32,6 @@ quoteInputElement.addEventListener('input', () => {
     }
   })
 
-  //if (correct) renderNewQuote()
   if (correct) stopTimer()
 })
 
@@ -54,21 +55,22 @@ body.addEventListener('keyup',function(e){
       startTimer()
     }
   } else {
-    console.log("enter key pressed while game already started")
+    // possibly use this to count raw keystrokes for accuracy metrics
   }
 });
 
+let charCount
 async function renderNewQuote() {
   const quote = "public final class HelloWorld {\n" + 
                 "public static void main(String[] args) {\n" +
                 "System.out.println(\"Hello, World!\")\;\n" +
                 "}\n" +
-                "}";
+                "}"
+  charCount = quote.length;
   quoteDisplayElement.innerHTML = ''
   quote.split('').forEach(character => {
     const characterSpan = document.createElement('span')
     if (character == "\t") {
-      //character = "&#160"
       characterSpan.innerHTML = character
     } else {
       characterSpan.innerText = character
@@ -84,11 +86,11 @@ let counterInterval
 
 function startTimer() {
   counterInterval = setInterval(() => {
-    timerElement.innerText = getTimerTime()
+    let seconds = getTimerTime()
+    timerElement.innerText = "time: " + seconds + " / wpm: --"
   }, 1000)
 
   timerOn = true
-  timerElement.innerText = 0
   startTime = new Date()
 }
 
@@ -96,10 +98,18 @@ function getTimerTime() {
   return Math.floor((new Date() - startTime) / 1000)
 }
 
+function getWPM(sec) {
+  let min = sec/60
+  let wpm = (charCount/5)/min
+  return Math.round(wpm * 10) / 10
+}
+
 function stopTimer() {
   timerOn = false
-  clearInterval(counterInterval);
-  timerElement.innerText = getTimerTime();
+  clearInterval(counterInterval)
+  let seconds = getTimerTime()
+  let wpm = getWPM(seconds)
+  timerElement.innerText = "time: " + seconds + " / wpm: " + wpm
 }
 
 renderNewQuote()
