@@ -56,29 +56,51 @@ quoteContainerElement.addEventListener("click", () => {
   }
 });
 
+let typedChars
 body.addEventListener('keyup',function(e){
   if (!timerOn) {
     if (e.keyCode === 13) {
       console.log("enter key pressed - timer started")
+      renderNewQuote()
       inputElement.disabled = false
       inputElement.focus()
       startTimer()
     }
   } else {
-    // possibly use this to count raw keystrokes for accuracy metrics
+    typedChars += 1
   }
 });
 
 let charCount
-async function renderNewQuote() {
+async function renderNewQuote_x() {
   const quote = "public final class HelloWorld {\n" + 
                 "public static void main(String[] args) {\n" +
                 "System.out.println(\"Hello, World!\")\;\n" +
                 "}\n" +
                 "}"
-  charCount = quote.length;
+  charCount = quote.length
   quoteDisplayElement.innerHTML = ''
-  quoteInputElement.value = ""
+  quoteInputElement.value = ''
+  quote.split('').forEach(character => {
+    const characterSpan = document.createElement('span')
+    if (character == "\t") {
+      characterSpan.innerHTML = character
+    } else {
+      characterSpan.innerText = character
+    }
+    quoteDisplayElement.appendChild(characterSpan)
+  })
+  quoteInputElement.value = null
+}
+
+async function renderNewQuote() {
+  var randomCode = new RandomCode();
+  var quote = randomCode.generateCodeBlock();
+
+
+  charCount = quote.length
+  quoteDisplayElement.innerHTML = ''
+  quoteInputElement.value = ''
   quote.split('').forEach(character => {
     const characterSpan = document.createElement('span')
     if (character == "\t") {
@@ -96,6 +118,9 @@ let counterInterval
 
 function startTimer() {
   timerElement.innerText = "time: -- / wpm: --"
+  buttonElement.innerHTML = "▶"
+  typedChars = 0
+
   counterInterval = setInterval(() => {
     let seconds = getTimerTime()
     timerElement.innerText = "time: " + seconds + " / wpm: --"
@@ -115,13 +140,27 @@ function getWPM(sec) {
   return Math.round(wpm * 10) / 10
 }
 
-function stopTimer() {
-  timerOn = false
-  inputElement.disabled = true
-  clearInterval(counterInterval)
-  let seconds = getTimerTime()
-  let wpm = getWPM(seconds)
-  timerElement.innerText = "time: " + seconds + " / wpm: " + wpm
+function getAccuracy() {
+  console.log(charCount + " / " + typedChars)
+  let pctAcc = charCount/typedChars
+  return Math.round(pctAcc * 1000) / 10
 }
 
-renderNewQuote()
+function refreshMetrics() {
+  let sec = getTimerTime()
+  let wpm = getWPM(sec)
+  let acc = getAccuracy()
+
+  timerElement.innerText = "time: " + sec + "s / wpm: " + wpm + " / acc: " + acc + "%"
+}
+
+function stopTimer() {
+  timerOn = false
+  buttonElement.innerHTML = "🗘"
+  inputElement.disabled = true
+  clearInterval(counterInterval)
+
+  refreshMetrics()
+}
+
+//renderNewQuote1()

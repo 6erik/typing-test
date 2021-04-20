@@ -19,7 +19,7 @@
     position: absolute;
     text-align: center;
     top: 2rem;
-    bottom: 2rem;
+    
     padding: 2rem;
     border-radius: .5rem;
   }
@@ -52,7 +52,6 @@
     margin: 8px 8px 8px 8px;
     border-radius: 2px;
     width: 800px;
-    height: 380px;
     max-width: 90%;
     max-height: 90%;
   }
@@ -68,7 +67,8 @@
   .quote-display {
     color: #f8f8f2;
     font-size: 1.2rem;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: calc(1rem + 2px);
     margin-right: calc(1rem + 2px);
   }
